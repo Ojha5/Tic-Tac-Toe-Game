@@ -63,3 +63,4 @@ reset.addEventListener("click" , (element) => {
     isGameOver = false;
     turn = "X"
 })
+
