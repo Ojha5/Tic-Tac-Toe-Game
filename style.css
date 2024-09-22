@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0; 
+    font-family: "Moderustic", sans-serif;  
+}
+
+nav{
+    background-color: purple;
+    color: white;
+    height: 65px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    font-size: 19px;
+}
+
+nav ul li{
+    list-style : none;
+}
+
+.game-container{
+    display: flex;
+    justify-content: space-around;
+    margin-top : 5vw;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3 , 10vw);
+    grid-template-rows: repeat(3 , 10vw);
+}
+
+.box{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vw;
+}
+
+.box:hover{
+    background-color: rgb(222, 207, 222);
+    cursor: pointer;
+}
+
+.bt{
+    border-top: none;
+}
+
+.bl{
+    border-left: none;
+}
+
+.br{
+    border-right: none;
+}
+
+.bd{
+    border-bottom: none;
+}
