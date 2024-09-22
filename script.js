@@ -14,21 +14,32 @@ let changeTurn = () => {
 const checkWin = () => {
     let boxTexts = document.getElementsByClassName("boxText");
     let winCases = [
-        [0 , 1 , 2],
-        [3 , 4 , 5],
-        [6 , 7 , 8],
-        [0 , 3 , 6],
-        [1 , 4 , 7],
-        [2 , 5 , 8],
-        [0 , 4 , 8],
-        [2 , 4 , 6]
+        [0 , 1 , 2 , 5 , 5 , 0 , 8 , 8 , 0],
+        [3 , 4 , 5 , 5 , 15 , 0 , 8 , 24 , 0],
+        [6 , 7 , 8 , 5 , 25 , 0 , 8 , 40 , 0],
+        [0 , 3 , 6 , -5 , 15 , 90 , -8 , 24 , 90],
+        [1 , 4 , 7 , 5 , 15 , 90 , 8 , 24 , 90],
+        [2 , 5 , 8 , 15 , 15 , 90 , 24 , 24 , 90],
+        [0 , 4 , 8 , 5 , 15 , 45 , 7 , 22 , 45],
+        [2 , 4 , 6 , 5 , 15 , -45 , 7 , 22 , -45]
     ]
 
     winCases.forEach((e) => {
         if((boxTexts[e[0]].innerText == boxTexts[e[1]].innerText) && (boxTexts[e[1]].innerText == boxTexts[e[2]].innerText) && (boxTexts[e[0]].innerText != "")) {
             isGameOver = true;
             document.querySelector(".info").innerText = turn + " Won the Game";
-            document.querySelector(".imgBox").firstElementChild.style.width = "200px";
+            let currWidth = window.innerWidth;
+            
+            if(currWidth > 950){
+                document.querySelector(".line").style.width = "20vw"
+                document.querySelector(".line").style.transform =  `translate(${e[3]}vw , ${e[4]}vw) rotate(${e[5]}deg)`
+                document.querySelector(".imgBox").firstElementChild.style.width = "200px";
+            }
+            else{
+                document.querySelector(".line").style.width = "32vw"
+                document.querySelector(".line").style.transform =  `translate(${e[6]}vw , ${e[7]}vw) rotate(${e[8]}deg)`
+                document.querySelector(".imgBox").firstElementChild.style.width = "150px";
+            }
         }
     })
 }
@@ -62,5 +73,7 @@ reset.addEventListener("click" , (element) => {
     document.querySelector(".info").innerText = `Turn for X`
     isGameOver = false;
     turn = "X"
+    document.querySelector(".line").style.width = "0vw";
+    document.querySelector(".line").style.transform = "translate(0vw , 0vw) rotate(0deg)"
 })
 

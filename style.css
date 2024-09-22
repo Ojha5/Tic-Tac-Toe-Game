@@ -31,6 +31,7 @@ nav ul li{
     display: grid;
     grid-template-columns: repeat(3 , 10vw);
     grid-template-rows: repeat(3 , 10vw);
+    position: relative;
 }
 
 .box{
@@ -113,4 +114,14 @@ nav ul li{
     .imgBox{
         text-align: center;
     }
+
+}
+
+.line{
+    width: 0vw;
+    height: 3px;
+    background-color: black;
+    position: absolute;
+    transition : width 0.3s ease-in-out;
+    background-color: rgb(210, 184, 210);
 }
