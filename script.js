@@ -29,7 +29,7 @@ const checkWin = () => {
             isGameOver = true;
             document.querySelector(".info").innerText = turn + " Won the Game";
             let currWidth = window.innerWidth;
-            
+
             if(currWidth > 950){
                 document.querySelector(".line").style.width = "20vw"
                 document.querySelector(".line").style.transform =  `translate(${e[3]}vw , ${e[4]}vw) rotate(${e[5]}deg)`
@@ -50,7 +50,7 @@ Array.from(boxes).forEach((box) => {
     let boxText = box.firstElementChild;
     
     box.addEventListener("click" , (e) => {
-        if(boxText.innerText == ""){
+        if(boxText.innerText == "" && !isGameOver){
             boxText.innerText = turn;
             ting.play();
             checkWin();
