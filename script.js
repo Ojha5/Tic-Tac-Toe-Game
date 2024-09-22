@@ -49,3 +49,17 @@ Array.from(boxes).forEach((box) => {
         }
     })
 })
+
+let reset = document.getElementById("reset");
+reset.addEventListener("click" , (element) => {
+    let boxTexts = document.getElementsByClassName("boxText");
+
+    Array.from(boxTexts).forEach((e) => {
+        e.innerText = "";
+    })
+
+    document.querySelector(".imgBox").firstElementChild.style.width = "0px";
+    document.querySelector(".info").innerText = `Turn for X`
+    isGameOver = false;
+    turn = "X"
+})
