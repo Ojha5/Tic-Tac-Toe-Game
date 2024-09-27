@@ -1,9 +1,10 @@
-console.log("Welcome to Tic Tac Toe Game")
+// console.log("Welcome to Tic Tac Toe Game")
 let music = new Audio("music/music.mp3")
 let ting = new Audio("music/ting.mp3")
 let gameOver = new Audio("music/gameover.mp3")
 let turn = "X";
 let isGameOver = false;
+let filledCellCount = 0; // It is denoting ki kitte cells use ho chuke hai so that we can make a logic ki agar 9 cells use ho chuke hai that indicates a draw.
 
 // Function to change the turn 
 let changeTurn = () => {
@@ -40,8 +41,17 @@ const checkWin = () => {
                 document.querySelector(".line").style.transform =  `translate(${e[6]}vw , ${e[7]}vw) rotate(${e[8]}deg)`
                 document.querySelector(".imgBox").firstElementChild.style.width = "150px";
             }
+
+            gameWinPageFlash();
         }
     })
+}
+
+function gameWinPageFlash(){
+    document.querySelector("body").style.backgroundColor = "#d4edda";
+    setTimeout(() => {
+        document.querySelector("body").style.backgroundColor = "white";
+    } , 250)
 }
 
 // Game logic
@@ -51,15 +61,29 @@ Array.from(boxes).forEach((box) => {
     
     box.addEventListener("click" , (e) => {
         if(boxText.innerText == "" && !isGameOver){
+            filledCellCount++;
             boxText.innerText = turn;
             ting.play();
             checkWin();
             changeTurn();
     
             if(!isGameOver) document.querySelector(".info").innerText = `Turn for ${turn}`
+            
+            if(filledCellCount == 9 && !isGameOver){
+                // That means game is Draw.
+                document.querySelector(".info").innerHTML = `Game is Draw! <br> Click Reset to Try Again.`
+                gameDrawPageFlash();
+            }
         }
     })
 })
+
+function gameDrawPageFlash(){
+    document.querySelector("body").style.backgroundColor = "red";
+    setTimeout(() => {
+        document.querySelector("body").style.backgroundColor = "white";
+    } , 150)
+}
 
 let reset = document.getElementById("reset");
 reset.addEventListener("click" , (element) => {
@@ -75,5 +99,6 @@ reset.addEventListener("click" , (element) => {
     turn = "X"
     document.querySelector(".line").style.width = "0vw";
     document.querySelector(".line").style.transform = "translate(0vw , 0vw) rotate(0deg)"
+    filledCellCount = 0;
 })
 
